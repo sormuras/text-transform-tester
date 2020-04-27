@@ -9,7 +9,7 @@ Aus der Notwendigkeit geboren, weil JUnit 4 als Plattform (zu) erfolgreich war.
 Es gibt viele Verwendungen von `junit-4.x.jar`, zu viele davon in einer Art und Weise, die das Weiterentwickeln unmöglich machten.
 Bereits das Umbennen privater Felder führt zu fehlerhaften Darstellungen in IDEs.
 
-![junit-4-serialization-bug](https://raw.githubusercontent.com/marcphilipp/presentations/master/junit5-intro/serialization-bug.png)
+![junit4-serialization-bug](https://raw.githubusercontent.com/marcphilipp/presentations/master/junit5-intro/serialization-bug.png)
 
 Trennung der Belange.
 
@@ -27,14 +27,22 @@ Drei Klassen von Kunden:
 
   Werkzeuge, die Tests ausführen und einen Report erstellen.
 
+In einem Bild zusammengefasst:
+
+![junit5-architecture-big-picture](https://github.com/marcphilipp/presentations/raw/master/junit5-intro/junit5-architecture-big-picture.svg?sanitize=true)
+
 ## Für wen ist die `TestEngine` Schnittstelle gedacht?
 
 Für alle, die selber definieren wollen, was ein Test ist und wie solche Tests evaluiert werden.
+Und genau das machen wir jetzt: `T³`
 
 ### T³ = text transform tester
 
-- `text.input` » `String.transform(Function)` » `text.output`
-- `text.output` » `String.transform(Function)` » `text.output`, falls die Transformationsfunktion idempotent ist.
+- `text.input` » `String.transform(Function)` » `text(function).output`
+
+Falls die Transformationsfunktion idempotent ist:
+
+- `text(function).output` » `String.transform(Function)` » `text(function).output`
 
 Beispiel
 
@@ -46,17 +54,49 @@ Tschö.
 
 Transformation: `String::toUppercase`
 
-`hallo.output`
+`hallo(uppercase).output`
 ```
 HALLO WELT!
 TSCHÖ.
 ```
 
-### Grobe Architektur von T³
+### Pseudo-Code von T³
 
 ```java
 abstract class T³ implements TestEngine {
 
+  // discover -- anounce tests we want to execute
+
+  // execute -- read input, apply transformation, compare expected with actual output
+
+  public abstract String transform(String text);
+  
+  public List<Test> mandatedTests() {
+    return List.of();
+  }
+
+  public static final class Test extends AbstractTestDescriptor {
+    private final String input;
+    private final String output;
+  }
+}
+```
+
+### Konkrete Implementierung mit Uppercase
+
+```java
+public class Uppercase extends T³ {
+
+  @Override
+  public String transform(String text) {
+    return text.toUppercase();
+  }
+
+  @Override
+  public List<Test> mandatedTests() {
+    return List.of(new Test("Hallo", "HALLO"));
+  }
+}
 ```
 
 ## Zusammenfassung
