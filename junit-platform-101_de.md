@@ -99,6 +99,96 @@ public class Uppercase extends T³ {
 }
 ```
 
+## Unter der Haube einer `TestEngine`
+
+Platform als Mittler zwischen Tools und TestEngines.
+
+### EngineDiscoveryRequest
+
+EngineDiscoveryRequest provides a TestEngine access to the information necessary to discover tests and containers.
+A request is comprised of selectors and filters. While the former select resources that engines can use to discover tests, the latter specify how such resources are to be filtered. All of the filters have to include a resource for it to end up in the test plan.
+
+In addition, the supplied configuration parameters can be used to influence the discovery process.
+
+### Discovery Selektoren
+
+Im Module `org.junit.platform.engine` ist im gleichnamigen Package das Interface `DiscoverySelector` deklariert.
+Ein `DiscoverySelector` definiert auf welchem Weg eine `TestEngine` ihre Tests finden kann.
+Zum Beispiel über den Namen einer Javaklasse, 
+— for example, the name of a Java class, the path to a file or directory, etc.
+
+Das Package `org.junit.platform.engine.discovery` enthält in der Version 1.7 der JUnit Platform folgende konkrete Selektoren.
+
+1. `ClasspathResourceSelector` seit 1.0
+
+    A DiscoverySelector that selects the name of a classpath resource so that TestEngines can load resources from the classpath — for example, to load XML or JSON files from the classpath, potentially within JARs.
+
+1. `ClasspathRootSelector` seit 1.0
+
+    A DiscoverySelector that selects a classpath root so that TestEngines can search for class files or resources within the physical classpath — for example, to scan for test classes.
+
+1. `ClassSelector` seit 1.0
+
+    A DiscoverySelector that selects a Class or class name so that TestEngines can discover tests or containers based on classes.
+    If a Java Class reference is provided, the selector will return that Class and its class name accordingly. If a class name is provided, the selector will only attempt to lazily load the Class if getJavaClass() is invoked.
+
+    In this context, Java Class means anything that can be referenced as a Class on the JVM — for example, classes from other JVM languages such Groovy, Scala, etc.
+
+1. `DirectorySelector` seit 1.0
+
+    A DiscoverySelector that selects a directory so that TestEngines can discover tests or containers based on directories in the file system.
+
+1. `FileSelector` seit 1.0
+
+    A DiscoverySelector that selects a file so that TestEngines can discover tests or containers based on files in the file system.
+
+1. `MethodSelector` seit 1.0
+
+    A DiscoverySelector that selects a Method or a combination of class name, method name, and parameter types so that TestEngines can discover tests or containers based on methods.
+    If a Java Method is provided, the selector will return that method and its method name, class name, and parameter types accordingly. If a Class and method name, a class name and method name, or simply a fully qualified method name is provided, this selector will only attempt to lazily load the Class and Method if getJavaClass() or getJavaMethod() is invoked.
+
+    In this context, a Java Method means anything that can be referenced as a Method on the JVM — for example, methods from Java classes or methods from other JVM languages such Groovy, Scala, etc.
+
+1. `ModuleSelector` seit 1.1
+
+    A DiscoverySelector that selects a module name so that TestEngines can discover tests or containers based on modules.
+
+1. `NestedClassSelector` seit 1.6
+
+    A DiscoverySelector that selects a nested Class or class name enclosed in other classes so that TestEngines can discover tests or containers based on classes.
+    If Java Class references are provided for the nested class or the enclosing classes, the selector will return these Class and their class names accordingly. If class names are provided, the selector will only attempt to lazily load the Class if getEnclosingClasses() or getNestedClass() are invoked.
+    
+    In this context, Java Class means anything that can be referenced as a Class on the JVM — for example, classes from other JVM languages such Groovy, Scala, etc.
+
+1. `NestedMethodSelector` seit 1.6
+
+    A DiscoverySelector that selects a nested Method or a combination of enclosing classes names, class name, method name, and parameter types so that TestEngines can discover tests or containers based on methods.
+    If a Java Method is provided, the selector will return that method and its method name, class name, enclosing classes names and parameter types accordingly. If class or methods names are provided, this selector will only attempt to lazily load the Class and Method if getEnclosingClasses(), getNestedClass() or getMethod() is invoked.
+    
+    In this context, a Java Method means anything that can be referenced as a Method on the JVM — for example, methods from Java classes or methods from other JVM languages such Groovy, Scala, etc.
+
+1. `PackageSelector` seit 1.0
+
+    A DiscoverySelector that selects a package name so that TestEngines can discover tests or containers based on packages.
+
+1. `UniqueIdSelector` seit 1.0
+
+    A DiscoverySelector that selects a UniqueId so that TestEngines can discover tests or containers based on unique IDs.
+
+1. `UriSelector` seit 1.0
+
+    A DiscoverySelector that selects a URI so that TestEngines can discover tests or containers based on URIs.
+
+### Discovery Filter
+
+A DiscoveryFilter is applied during test discovery to determine if a given container or test should be included in the test plan.
+TestEngines should apply DiscoveryFilters during the test discovery phase.
+
+### ExecutionRequest
+
+Provides a single TestEngine access to the information necessary to execute its tests.
+A request contains an engine's root TestDescriptor, the EngineExecutionListener to be notified of test execution events, and ConfigurationParameters that the engine may use to influence test execution.
+
 ## Zusammenfassung
 
 Dieser Artikel beschreibt die zugrundeliegende Idee und die Anwendungsmöglichkeiten der JUnit Platform.
