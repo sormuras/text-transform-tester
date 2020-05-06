@@ -64,7 +64,7 @@ public abstract class TextTransformTester implements TestEngine {
           listener.executionFinished(descriptor, TestExecutionResult.successful());
           continue;
         }
-        var message = "Mismatch of expected and actual output";
+        var message = "Mismatch of expected (read from file) and actual (transformed) texts";
         var error = new AssertionFailedError(message, expected, actual);
         listener.executionFinished(descriptor, TestExecutionResult.failed(error));
       }
