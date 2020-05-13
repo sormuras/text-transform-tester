@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.sormuras.ttt;
+package de.sormuras.junit.ttt;
 
 import org.junit.platform.engine.TestSource;
 import org.junit.platform.engine.UniqueId;

@@ -15,4 +15,4 @@
  */
 
 /** Contains the abstract text transform tester test engine. */
-package de.sormuras.ttt;
+package de.sormuras.junit.ttt;

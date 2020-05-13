@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.sormuras.ttt;
+package de.sormuras.junit.ttt;
 
 import java.util.List;
 import org.junit.platform.engine.EngineDiscoveryRequest;

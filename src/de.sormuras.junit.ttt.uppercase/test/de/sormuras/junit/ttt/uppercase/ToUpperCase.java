@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package de.sormuras.ttt.uppercase;
+package de.sormuras.junit.ttt.uppercase;
 
-import de.sormuras.ttt.Test;
-import de.sormuras.ttt.TextTransformTester;
+import de.sormuras.junit.ttt.Test;
+import de.sormuras.junit.ttt.TextTransformTester;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;

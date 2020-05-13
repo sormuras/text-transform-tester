@@ -1,4 +1,4 @@
-package de.sormuras.ttt.uppercase;
+package de.sormuras.junit.ttt.uppercase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,7 +10,7 @@ class ToUpperCaseTests {
   @Test
   void checkEngineProperties() {
     var engine = new ToUpperCase();
-    assertEquals("de.sormuras.ttt.uppercase.ToUpperCase", engine.getId());
+    assertEquals("de.sormuras.junit.ttt.uppercase.ToUpperCase", engine.getId());
     assertEquals(Optional.empty(), engine.getGroupId());
     assertEquals(engine.getClass().getModule().getName(), engine.getArtifactId().orElseThrow());
     assertEquals("DEVELOPMENT", engine.getVersion().orElseThrow());

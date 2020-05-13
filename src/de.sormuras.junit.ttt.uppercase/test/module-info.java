@@ -21,5 +21,5 @@ open /*test*/ module de.sormuras.junit.ttt.uppercase {
   requires org.junit.platform.engine;
 
   provides org.junit.platform.engine.TestEngine with
-      de.sormuras.ttt.uppercase.ToUpperCase;
+      de.sormuras.junit.ttt.uppercase.ToUpperCase;
 }

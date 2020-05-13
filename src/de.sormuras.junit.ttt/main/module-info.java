@@ -16,7 +16,7 @@
 
 /** Defines the API of the Text-Transform-Tester TestEngine. */
 module de.sormuras.junit.ttt {
-  exports de.sormuras.ttt;
+  exports de.sormuras.junit.ttt;
 
   requires transitive org.junit.platform.engine;
 }
