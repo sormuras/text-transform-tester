@@ -1,6 +1,7 @@
 /.idea/lib/
 /.idea/out/
 /.idea/shelf/
+/.idea/uiDesigner.xml
 /.idea/workspace.xml
 *.class
 *.jar
