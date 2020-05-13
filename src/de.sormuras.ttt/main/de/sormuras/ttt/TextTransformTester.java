@@ -19,6 +19,7 @@ package de.sormuras.ttt;
 import java.util.List;
 import org.junit.platform.engine.EngineDiscoveryRequest;
 import org.junit.platform.engine.ExecutionRequest;
+import org.junit.platform.engine.TestDescriptor;
 import org.junit.platform.engine.TestEngine;
 import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.engine.UniqueId;
@@ -34,14 +35,13 @@ public abstract class TextTransformTester implements TestEngine {
   }
 
   @Override
-  public org.junit.platform.engine.TestDescriptor discover(
-      EngineDiscoveryRequest discoveryRequest, UniqueId uniqueId) {
+  public TestDescriptor discover(EngineDiscoveryRequest discoveryRequest, UniqueId uniqueId) {
     var engine = new EngineDescriptor(uniqueId, getClass().getSimpleName());
     var iterator = tests().listIterator();
     while (iterator.hasNext()) {
       var id = uniqueId.append("test", "#" + iterator.nextIndex());
       var test = iterator.next();
-      var descriptor = new TestDescriptor(id, test.displayName(), test, test.testSource());
+      var descriptor = new TextTransformDescriptor(id, test.displayName(), test, test.testSource());
       engine.addChild(descriptor);
     }
     return engine;
@@ -55,8 +55,8 @@ public abstract class TextTransformTester implements TestEngine {
     var listener = executionRequest.getEngineExecutionListener();
     listener.executionStarted(engine);
     for (var child : engine.getChildren()) {
-      if (child instanceof TestDescriptor) {
-        var descriptor = (TestDescriptor) child;
+      if (child instanceof TextTransformDescriptor) {
+        var descriptor = (TextTransformDescriptor) child;
         listener.executionStarted(descriptor);
         var actual = transform(descriptor.getTest().input());
         var expected = descriptor.getTest().output();

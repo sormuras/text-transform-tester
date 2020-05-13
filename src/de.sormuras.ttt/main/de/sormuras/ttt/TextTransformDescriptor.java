@@ -20,12 +20,12 @@ import org.junit.platform.engine.TestSource;
 import org.junit.platform.engine.UniqueId;
 import org.junit.platform.engine.support.descriptor.AbstractTestDescriptor;
 
-class TestDescriptor extends AbstractTestDescriptor {
+class TextTransformDescriptor extends AbstractTestDescriptor {
 
   private final Test test;
 
-  public TestDescriptor(UniqueId uniqueId, String displayName, Test test, TestSource testSource) {
-    super(uniqueId, displayName, testSource);
+  public TextTransformDescriptor(UniqueId id, String displayName, Test test, TestSource source) {
+    super(id, displayName, source);
     this.test = test;
   }
 
