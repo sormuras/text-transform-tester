@@ -35,7 +35,7 @@ public final class /*record*/ Test {
     var name = inputName.substring(0, inputName.length() - ".input".length());
     var outputName = name + ".output";
     var output = input.resolveSibling(outputName);
-    var displayName = String.format("File %s equals %s file %s.", outputName, function, inputName);
+    var displayName = String.format("File '%s' equals %s '%s'.", outputName, function, inputName);
     try {
       var source = FileSource.from(output.toFile());
       return new Test(displayName, Files.readString(input), Files.readString(output), source);
