@@ -15,7 +15,7 @@
  */
 
 /** Contains the {@link String#toUpperCase()}-transforming text comparing engine. */
-open /*test*/ module de.sormuras.ttt.uppercase {
+open /*test*/ module de.sormuras.junit.ttt.uppercase {
   requires de.sormuras.junit.ttt;
   requires org.junit.jupiter.api;
   requires org.junit.platform.engine;
