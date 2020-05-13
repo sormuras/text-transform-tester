@@ -36,7 +36,7 @@ public abstract class TextTransformTester implements TestEngine {
 
   @Override
   public TestDescriptor discover(EngineDiscoveryRequest discoveryRequest, UniqueId uniqueId) {
-    var engine = new EngineDescriptor(uniqueId, getClass().getSimpleName());
+    var engine = new EngineDescriptor(uniqueId, displayName());
     var iterator = tests().listIterator();
     while (iterator.hasNext()) {
       var id = uniqueId.append("test", "#" + iterator.nextIndex());
@@ -45,6 +45,10 @@ public abstract class TextTransformTester implements TestEngine {
       engine.addChild(descriptor);
     }
     return engine;
+  }
+
+  protected String displayName() {
+    return getClass().getSimpleName() + ", a TestEngine extending TextTransformTester";
   }
 
   protected abstract List<Test> tests();
