@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/de.sormuras.ttt.iml" filepath="$PROJECT_DIR$/.idea/de.sormuras.ttt.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/de.sormuras.ttt.uppercase.iml" filepath="$PROJECT_DIR$/.idea/de.sormuras.ttt.uppercase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/de.sormuras.junit.ttt.iml" filepath="$PROJECT_DIR$/.idea/de.sormuras.junit.ttt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/de.sormuras.junit.ttt.uppercase.iml" filepath="$PROJECT_DIR$/.idea/de.sormuras.junit.ttt.uppercase.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/text-transform-tester.iml" filepath="$PROJECT_DIR$/.idea/text-transform-tester.iml" />
     </modules>
   </component>

@@ -14,12 +14,9 @@
  * limitations under the License.
  */
 
-/** Contains the {@link String#toUpperCase()}-transforming text comparing engine. */
-open /*test*/ module de.sormuras.ttt.uppercase {
-  requires de.sormuras.ttt;
-  requires org.junit.jupiter.api;
-  requires org.junit.platform.engine;
+/** Defines the API of the Text-Transform-Tester TestEngine. */
+module de.sormuras.junit.ttt {
+  exports de.sormuras.ttt;
 
-  provides org.junit.platform.engine.TestEngine with
-      de.sormuras.ttt.uppercase.ToUpperCase;
+  requires transitive org.junit.platform.engine;
 }

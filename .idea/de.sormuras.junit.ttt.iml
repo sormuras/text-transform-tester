@@ -2,8 +2,8 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$/src/de.sormuras.ttt">
-      <sourceFolder url="file://$MODULE_DIR$/src/de.sormuras.ttt/main" isTestSource="false" />
+    <content url="file://$MODULE_DIR$/src/de.sormuras.junit.ttt">
+      <sourceFolder url="file://$MODULE_DIR$/src/de.sormuras.junit.ttt/main" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="JUnit Platform Engine" level="project" />
