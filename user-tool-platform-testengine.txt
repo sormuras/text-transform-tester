@@ -1,0 +1,21 @@
+// https://app.zenuml.com
+
+User Tool Platform TestEngine
+
+@Starter(User)
+
+// opens an IDE
+"Present discovered tests" = Tool.open {
+  "TestPlan" = Platform.discover(LauncherDiscoveryRequest) {
+    // for-each registered engine ...
+    "TestDescriptor" = TestEngine.discover(EngineDiscoveryRequest, UniqueId)
+  }
+}
+
+"Present test report" = Tool.runTests {
+  Platform.execute(TestPlan) {
+    // for-each registered engine...
+    TestEngine.execute(ExecutionRequest)
+  }
+  TestEngine->Tool: TestExecutionResult
+}
