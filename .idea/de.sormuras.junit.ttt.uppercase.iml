@@ -4,7 +4,6 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/src/de.sormuras.junit.ttt.uppercase">
       <sourceFolder url="file://$MODULE_DIR$/src/de.sormuras.junit.ttt.uppercase/test" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/de.sormuras.junit.ttt.uppercase/text" type="java-test-resource" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="de.sormuras.junit.ttt" scope="TEST" />
